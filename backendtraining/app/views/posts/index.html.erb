@@ -1,9 +1,9 @@
- <% flash.each do |name, msg| %>
-    <div class="alert alert-<%= name %>">
-      <a href="#" data-dismiss="alert" class="close">×</a>
-        <%= msg%>
-    </div> 
-  <% end %>
+<% flash.each do |name, msg| %>
+  <div class="alert alert-<%= name %>">
+    <a href="#" data-dismiss="alert" class="close">×</a>
+      <%= msg %>
+  </div> 
+<% end %>
 <div class="container">
   <% @posts.each do |post| %>
     <!--article-->
@@ -15,11 +15,7 @@
             <%= post.user.email %>
           </div>
           <div class="time">
-            <% if ((Time.current - post.created_at)/ 1.hour).round.modulo(24) > 5 %>
-             <small> <%=((Time.current - post.created_at)/ 1.hour).round.modulo(24) %> hours ago</small>
-           <% else %>
-             <small> <%=((Time.current - post.created_at)/ 1.hour).round.modulo(24) %> days ago</small>
-           <% end %>
+            <small><%= time_ago_in_words(post.created_at) %> ago</small>
           </div>
         </div>
         <div class="post-content">
