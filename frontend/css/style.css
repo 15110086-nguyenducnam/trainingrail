@@ -129,7 +129,25 @@ body{
     width: 50%;
     padding-top: 5%;
 }
-
+.profile {
+  float: left;
+  padding-top: 50px;
+}
+.profile-avatar {
+  margin: auto;
+  width: 50%;
+  height: 50%;
+}
+.profile-avatar img {
+  width: 100%;
+  height: 100%;
+}
+.profile-detail {
+  padding-top: 20px;
+}
+.post {
+  float: left;
+}
 @media(max-width: 376px){
  .input-group-prepend {
    right: 19.5%;

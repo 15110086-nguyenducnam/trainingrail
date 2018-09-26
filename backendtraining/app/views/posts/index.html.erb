@@ -1,0 +1,81 @@
+ <% flash.each do |name, msg| %>
+    <div class="alert alert-<%= name %>">
+      <a href="#" data-dismiss="alert" class="close">×</a>
+        <%= msg%>
+    </div> 
+  <% end %>
+<div class="container">
+  <% @posts.each do |post| %>
+    <!--article-->
+      <div class="article col-md-12">
+        <div class="user">
+          <div class="avatar">
+          </div>
+          <div class="name">
+            <%= post.user.email %>
+          </div>
+          <div class="time">
+            <% if ((Time.current - post.created_at)/ 1.hour).round.modulo(24) > 5 %>
+             <small> <%=((Time.current - post.created_at)/ 1.hour).round.modulo(24) %> hours ago</small>
+           <% else %>
+             <small> <%=((Time.current - post.created_at)/ 1.hour).round.modulo(24) %> days ago</small>
+           <% end %>
+          </div>
+        </div>
+        <div class="post-content">
+          <p><%= post.content %></p>
+        </div>
+        <div class="images">
+          <%= image_tag(post.image_url.to_s, alt: 'no picture') %>
+        </div>
+        <div class="like ">
+          <div class="like-icon col-md-6">
+            <% if post.likes.count == 0 %>
+              <%= link_to like_path(id: post.id, user: current_user.email), method: :put do %>
+                <i class="fa fa-heart"></i> 
+              <% end %> 
+            <% else %>
+              <% if post.likes.where(user_like: current_user.email, like_user: true).count > 0 %>
+                <%= link_to like_path(id: post.id, user: current_user.email), method: :put do %>
+                    <i class="fa fa-heart", style="color:red"></i>
+                  <% end %>
+              <% else %>
+                <%= link_to like_path(id: post.id, user: current_user.email), method: :put do %>
+                      <i class="fa fa-heart"></i> 
+                    <% end %> 
+              <% end %>
+            <% end %>
+            <i class="fa fa-comment-o"></i>
+          </div>
+          <div class="count-like col-md-6"> 
+            <p><%= post.likes.all.where(like_user: true).count %> Like</p>
+          </div>
+        </div>
+        <% post.comments.each do |comment| %>
+          <div class="comment">
+            <div class="comment-name">
+              <span><%= comment.user_comment %></span>
+            </div>
+            <div class="comment-content">
+              <span><%= comment.comment_user %></span>
+            </div>
+          </div>
+        <% end %>
+        <div class="post-comment">
+          <div class="middle-header-form">
+            <%= form_for @comment, url: comments_path, method: :post do |f|%>
+              <div class="form-group">
+                <%= f.hidden_field :user_comment, value: current_user.email%>
+                <%= f.hidden_field :post_id, value: post.id%>
+                <%= f.text_field :comment_user, class: "form-control", placeholder: "Comment" %>
+              </div>  
+              <div class="input-group-prepend">
+               <%= f.submit 'Submit', class: "btn btn-primary btn-sm rounded-1" %>
+              </div>
+            <%end%>
+          </div>
+        </div>
+      </div>
+    <!--//article-->
+  <% end %>
+</div>

@@ -1,0 +1,17 @@
+<div class="container">
+    <div class="login-form">
+      <h2>Post</h2>
+        <%= form_for @post, method: :post, html:{:multipart => true} do |f| %>
+          <div class="form-group">
+            <%= f.hidden_field :user_id, value: current_user.id%>
+            <%= f.label :content %><br />
+            <%= f.text_field :content, autofocus: true, placeholder: "post content", class: "form-control" %>
+            <%= f.label :image %><br />
+            <%= f.file_field :image, class: "form-control", placeholder:"Image" %>
+          </div>
+          <div class="actions">
+            <%= f.submit "Post", class: "btn btn-primary" %>
+          </div>
+        <% end %>
+    </div>
+  </div>
