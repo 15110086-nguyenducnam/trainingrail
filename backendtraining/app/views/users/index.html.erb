@@ -1,3 +1,9 @@
+<% flash.each do |name, msg| %>
+  <div class="alert alert-<%= name %>">
+    <a href="#" data-dismiss="alert" class="close">×</a>
+      <%= msg %>
+  </div> 
+<% end %>
 <div class="container">
   <div class="profile col-sm-4">
     <div class="profile-avatar">
@@ -6,6 +12,9 @@
     <div class="profile-detail">
       <span>Email: <%= @user.email %></span>
     </div>
+    <div class="">
+      <%= link_to 'Edit Profile', user_path(id: current_user.id) %>
+    </div>
   </div>
   <div class="post col-sm-8">
     <% @user_posts.each do |post| %>
@@ -13,6 +22,7 @@
       <div class="article col-md-12">
         <div class="user">
           <div class="avatar">
+            <%= image_tag(@user.avatar_url.to_s) %>
           </div>
           <div class="name">
             <%= post.user.email %>

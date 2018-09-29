@@ -201,6 +201,13 @@ body{
 .post {
   float: left;
 }
+.user {
+  width: -webkit-fill-available;
+  form {
+    margin: auto;
+    width: 50%;
+  }
+}
 @media(max-width: 376px){
  .input-group-prepend {
    right: 99px;

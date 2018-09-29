@@ -10,6 +10,7 @@
       <div class="article col-md-12">
         <div class="user">
           <div class="avatar">
+            <%= image_tag(post.user.avatar_url.to_s) %>
           </div>
           <div class="name">
             <%= post.user.email %>

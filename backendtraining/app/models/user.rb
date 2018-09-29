@@ -7,8 +7,9 @@ class User < ApplicationRecord
   # association
   has_many :comment
   has_many :posts
+  
   # validate
-  validates :image, presence: true
+  validates :avatar, presence: true
 
   attr_accessor :avatar
   # mount_uploader :image, ImageUploader
