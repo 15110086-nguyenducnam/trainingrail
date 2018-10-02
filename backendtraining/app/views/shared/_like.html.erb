@@ -1,0 +1,21 @@
+<div class="like-icon col-md-6">
+  <% if post.show_heart %>
+    <%= link_to like_path(id: post.id, user: current_user.email), method: :put, remote: true do %>
+      <i class="fa fa-heart"></i> 
+    <% end %> 
+  <% else %>
+    <% if post.exist_user_like(current_user.email) %>
+      <%= link_to like_path(id: post.id, user: current_user.email), method: :put, remote: true do %>
+          <i class="fa fa-heart", style="color:red"></i>
+        <% end %>
+    <% else %>
+      <%= link_to like_path(id: post.id, user: current_user.email), method: :put, remote: true do %>
+            <i class="fa fa-heart"></i> 
+          <% end %> 
+    <% end %>
+  <% end %>
+  <i class="fa fa-comment-o"></i>
+</div>
+<div class="count-like col-md-6"> 
+  <p><%= post.likes.all.where(like_user: true).count %> Like</p>
+</div>

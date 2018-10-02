@@ -1,0 +1,6 @@
+$('#comment-<%=@post.id%>').html('<%= escape_javascript render "shared/comment", post: @post %>');
+$(':input','.middle-header-form')
+  .not(':button, :submit, :reset, :hidden')
+  .val('')
+  .prop('checked', false)
+  .prop('selected', false);

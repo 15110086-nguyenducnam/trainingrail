@@ -2,7 +2,7 @@ class Post < ApplicationRecord
 
   # association
   belongs_to :user
-  has_many :likes
+  has_many :likes, -> { where(like_user: true) }
   has_many :comments
 
   # validate

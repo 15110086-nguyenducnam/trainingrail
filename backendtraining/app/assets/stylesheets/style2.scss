@@ -163,7 +163,7 @@ body{
   padding-left: 20px;
 }
 .input-group-prepend {
-  right: 120px;
+  right: 132px;
   position: absolute;
   transform: translateY(-163%);
 }
@@ -207,6 +207,17 @@ body{
     margin: auto;
     width: 50%;
   }
+}
+.paginate {
+    margin: auto;
+    width: 50%;
+    display: flex;
+}
+.pagination {
+      margin: auto;
+    /* width: 50%; */
+    width: fit-content;
+    display: -webkit-box;
 }
 @media(max-width: 376px){
  .input-group-prepend {

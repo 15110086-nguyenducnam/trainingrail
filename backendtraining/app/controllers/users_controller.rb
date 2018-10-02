@@ -4,19 +4,16 @@ class UsersController < ApplicationController
 
   def index
     @user = current_user
-    @user_posts = @user.posts.all  
+    @user_posts = @user.posts.all.decorate 
     @comment = Comment.new
-    # binding.pry
   end
 
   def show
     @user = User.find(params[:id])
-    # binding.pry
   end
 
   def update
     @user = User.find(params[:id])
-    
     if @user.update_attributes(user_params)
       flash[:notice] = "Updated Successfully"
     else

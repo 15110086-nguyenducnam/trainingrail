@@ -6,8 +6,9 @@ class CommentsController < ApplicationController
       flash[:notice] = "Successfully comment..."
     else
       flash[:notice] = "Unsuccessfully comment..."
-    end
-    redirect_to posts_path
+    end 
+    @post = Post.find(params[:comment][:post_id]).decorate
+    # binding.pry
   end
 
   private
